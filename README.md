@@ -25,7 +25,7 @@ npm install
 ```
 3. Start the Selenium Server (jar file)
 ```
-`java -jar ./path/to/selenium-server-standalone.jar`
+java -jar ./path/to/selenium-server-standalone.jar
 ```
 *This will run Selenium on localhost and on port 4444*
 4. Run the example test
