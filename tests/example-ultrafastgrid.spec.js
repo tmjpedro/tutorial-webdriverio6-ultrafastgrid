@@ -63,12 +63,14 @@ describe('ACME Demo App - wdio6', function () {
 
 
   beforeEach(async function () {
-    var appName = await this.test.parent.title;
-    var testName = await this.currentTest.title;
+    const appName = await this.test.parent.title;
+    const testName = await this.currentTest.title;
+
     configuration.setAppName(appName);
     configuration.setTestName(testName);
 
     // Set the configuration to eyes
+
     eyes.setConfiguration(configuration);
 
     await eyes.open(browser);
