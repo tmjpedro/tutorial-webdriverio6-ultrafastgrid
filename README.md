@@ -33,6 +33,8 @@ npm install
 APPLITOOLS_API_KEY="[Your API Key]" npm test
 ```
 
+This will first set your `APPLITOOLS_API_KEY` into the node process then run `npm test`.
+
 ### Adding Applitools Eyes to an Existing Node.js WebdriverIO Project
 
 Install Applitools Eyes dependencies:
