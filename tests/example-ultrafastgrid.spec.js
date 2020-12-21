@@ -39,7 +39,7 @@ describe('ACME Demo App - wdio6', function () {
     configuration = eyes.getConfiguration();
 
     // use new Configuration() when not setting eyes setter methods. e.g. eyes.setLogHandler() etc...
-    //new Configuration();
+    // new Configuration();
 
     // You can get your api key from the Applitools dashboard
 
