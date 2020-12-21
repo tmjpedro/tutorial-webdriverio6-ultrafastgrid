@@ -1,5 +1,7 @@
 # Applitools Tutorial - WebdriverIO 6
 
+Get started with Applitools Ultrafast Test Grid with this example of using the VisualGridRunner from the Applitools Webdriver SDK.
+
 ## Pre-Requisites
 1. Selenium Standalone Server (<https://www.seleniumhq.org/download/>)
 2. Chrome Webdriver is on your machine and is in the PATH
@@ -19,15 +21,19 @@
 git clone https://github.com/applitools/tutorial-webdriverio6-ultrafastgrid
 cd tutorial-webdriverio6-ultrafastgrid
 ```
+*Note: you can alternatively download the project as a Zip file and extract it*
+
 2. Install the dependencies
 ```
 npm install
 ```
+
 3. Start the Selenium Server (jar file)
 ```
 java -jar ./path/to/selenium-server-standalone.jar
 ```
 *This will run Selenium on localhost and on port 4444*
+
 4. Run the example test
 ```
 APPLITOOLS_API_KEY="[Your API Key]" npm test
