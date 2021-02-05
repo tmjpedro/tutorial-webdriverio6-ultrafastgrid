@@ -27,7 +27,21 @@ cd tutorial-webdriverio6-ultrafastgrid
 npm install
 ```
 
-3. Run the example test
+3. Install ChromeDriver
+You'll additionally need chromedriver to run the project. To avoid version mismatches, make sure to install the version of Chrome that matches your system.
+
+To install the latest version, run:
+```
+npm install chromedriver
+```
+
+To install a specific version of chromedriver, run:
+```
+npm install chromedriver@[version]
+# Ex: npm install chromedriver@88.0.0
+```
+
+4. Run the example test
 ```
 APPLITOOLS_API_KEY="[Your API Key]" npm test
 ```
