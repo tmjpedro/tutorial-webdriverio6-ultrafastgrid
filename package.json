@@ -9,7 +9,9 @@
   },
   "author": "Applitools Team <team@applitools.com> (http://www.applitools.com/)",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "chromedriver": "^88.0.0"
+  },
   "devDependencies": {
     "@applitools/eyes-webdriverio": "^5.29.6",
     "@wdio/cli": "^6.12.1",

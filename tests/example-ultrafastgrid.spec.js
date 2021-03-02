@@ -47,7 +47,7 @@ describe('ACME Demo App - wdio6', function () {
 
     // create a new batch info instance and set it to the configuration
 
-    configuration.setBatch(new BatchInfo('Ultrafast Batch'))
+    configuration.setBatch(new BatchInfo('Ultrafast'))
 
     configuration.addBrowser(800, 600, BrowserType.CHROME);
     configuration.addBrowser(700, 500, BrowserType.FIREFOX);
@@ -81,9 +81,9 @@ describe('ACME Demo App - wdio6', function () {
 
     // Navigate to the url we want to test
 
-    await browser.url('https://demo.applitools.com/');
+    await browser.url('https://rows.com/hackathon/editor/c3d78c20-7b77-11eb-a5d8-599b64105e91/c3e806e0-7b77-11eb-9376-8161d518f2bb/live');
 
-    await expect(browser).toHaveTitle('ACME demo app');
+    await expect(browser).toHaveTitle('Find LinkedIn profiles');
 
     // ⭐️ Note to see visual bugs, run the test using the above URL for the 1st run.
     // but then change the above URL to https://demo.applitools.com/index_v2.html
@@ -92,15 +92,9 @@ describe('ACME Demo App - wdio6', function () {
     // check the login page with fluent api, see more info here
     // https://applitools.com/docs/topics/sdk/the-eyes-sdk-check-fluent-api.html
 
-    await eyes.check('Login Window', Target.window().fully());
+    await eyes.check('Published Window', Target.window().fully());
 
-    // Click the "Log in" button.
-    const loginButton = await browser.$('#log-in');
-    await loginButton.click();
-
-    // Check the app page
-    await eyes.check('App Window', Target.window().fully());
-
+  
     // Call Close on eyes to let the server know it should display the results
     await eyes.closeAsync();
   });
