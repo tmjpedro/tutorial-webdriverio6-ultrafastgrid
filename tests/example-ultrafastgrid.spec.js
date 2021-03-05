@@ -16,6 +16,27 @@ let eyes;
 let runner;
 let configuration;
 
+const grid = '[data-test="publishedAppGrid"]';
+const table = '[data-test="gridTable"]';
+const loginForm = 'form[data-test="sign-in"]';
+const emailInput = `${loginForm} input[name="email"]`;
+const passwordInput = `${loginForm} input[name="password"]`;
+const submitButton = `${loginForm} button`;
+
+const waitForGridDisplayed = async () => { 
+  const el = await $(grid);
+  await el.waitForDisplayed();
+}
+
+const waitForTableDisplayed = async () => { 
+  const el = await $(table);
+  await el.waitForDisplayed();
+}
+
+const waitLoadPage = async () => {
+  await waitLoadPage();
+}
+
 describe('ACME Demo App - wdio6', function () {
 
   before(async () => {
@@ -47,18 +68,44 @@ describe('ACME Demo App - wdio6', function () {
 
     // create a new batch info instance and set it to the configuration
 
-    configuration.setBatch(new BatchInfo('Ultrafast'))
-
-    configuration.addBrowser(800, 600, BrowserType.CHROME);
-    configuration.addBrowser(700, 500, BrowserType.FIREFOX);
-    configuration.addBrowser(1600, 1200, BrowserType.IE_11);
-    configuration.addBrowser(1024, 768, BrowserType.EDGE_CHROMIUM);
-    configuration.addBrowser(800, 600, BrowserType.SAFARI);
+    configuration.setBatch(new BatchInfo('rows'))
 
     // Add mobile emulation devices in Portrait mode
 
+    //1366x768
+    configuration.addBrowser(1366, 768, BrowserType.CHROME);
+    //1920x1080
+    configuration.addBrowser(1920, 1080, BrowserType.CHROME);
+    //1440x900
+    configuration.addBrowser(1440, 900, BrowserType.CHROME);
+
+    configuration.addBrowser(1366, 768, BrowserType.FIREFOX);
+    configuration.addBrowser(1600, 1200, BrowserType.IE_11);
+    configuration.addBrowser(1024, 768, BrowserType.EDGE_CHROMIUM);
+    //1440x900
+    configuration.addBrowser(1440, 900, BrowserType.SAFARI);
+
+    // Add mobile emulation devices in Portrait mode
+
+    // Safari
+    //375x812
     configuration.addDeviceEmulation(DeviceName.iPhone_X, ScreenOrientation.PORTRAIT);
-    configuration.addDeviceEmulation(DeviceName.Pixel_2, ScreenOrientation.PORTRAIT);
+
+    //414x896
+    configuration.addDeviceEmulation(DeviceName.iPhone_XS_Max, ScreenOrientation.PORTRAIT);
+
+    //375x667
+    configuration.addDeviceEmulation(DeviceName.iPhone_6_7_8, ScreenOrientation.PORTRAIT);
+    
+    // Android
+    //393x851	
+    configuration.addDeviceEmulation(DeviceName.Pixel_4, ScreenOrientation.PORTRAIT);
+
+    //360x780 ?? nop 720
+    configuration.addDeviceEmulation(DeviceName.LG_G6, ScreenOrientation.PORTRAIT);
+    
+    //360x640
+    configuration.addDeviceEmulation(DeviceName.Galaxy_Note_4, ScreenOrientation.PORTRAIT);
   });
 
 
@@ -76,28 +123,178 @@ describe('ACME Demo App - wdio6', function () {
     await eyes.open(browser);
   });
 
-
-  it('ultraFastTest', async () => {
+  
+  it('integrations', async () => {
 
     // Navigate to the url we want to test
 
-    await browser.url('https://rows.com/hackathon/editor/c3d78c20-7b77-11eb-a5d8-599b64105e91/c3e806e0-7b77-11eb-9376-8161d518f2bb/live');
-
-    await expect(browser).toHaveTitle('Find LinkedIn profiles');
-
-    // ⭐️ Note to see visual bugs, run the test using the above URL for the 1st run.
-    // but then change the above URL to https://demo.applitools.com/index_v2.html
-    // (for the 2nd run)
-
-    // check the login page with fluent api, see more info here
-    // https://applitools.com/docs/topics/sdk/the-eyes-sdk-check-fluent-api.html
-
-    await eyes.check('Published Window', Target.window().fully());
+    await browser.url('/integrations');
+    await waitLoadPage();
+    await eyes.check('Integrations Window', Target.window().fully());
 
   
     // Call Close on eyes to let the server know it should display the results
     await eyes.closeAsync();
   });
+
+  it('pricing', async () => {
+
+    // Navigate to the url we want to test
+
+    await browser.url('/pricing');
+    await waitLoadPage();
+    await eyes.check('pricing Window', Target.window().fully());
+
+  
+    // Call Close on eyes to let the server know it should display the results
+    await eyes.closeAsync();
+  });
+
+  it('tamplates', async () => {
+
+    // Navigate to the url we want to test
+
+    await browser.url('/templates');
+    await waitLoadPage();
+    await eyes.check('Templates Window', Target.window().fully());
+
+  
+    // Call Close on eyes to let the server know it should display the results
+    await eyes.closeAsync();
+  });
+
+  it('about', async () => {
+
+    // Navigate to the url we want to test
+
+    await browser.url('/about');
+    await waitLoadPage();
+    await eyes.check('About Window', Target.window().fully());
+
+  
+    // Call Close on eyes to let the server know it should display the results
+    await eyes.closeAsync();
+  });
+
+  it('sales', async () => {
+
+    // Navigate to the url we want to test
+
+    await browser.url('/sales');
+    await waitLoadPage();
+    await eyes.check('sales Window', Target.window().fully());
+
+  
+    // Call Close on eyes to let the server know it should display the results
+    await eyes.closeAsync();
+  });
+
+  it('docs', async () => {
+
+    // Navigate to the url we want to test
+
+    await browser.url('/docs');
+    await waitLoadPage();
+    await eyes.check('Docs Window', Target.window().fully());
+
+  
+    // Call Close on eyes to let the server know it should display the results
+    await eyes.closeAsync();
+  });
+
+  it('live', async () => {
+
+    // Navigate to the url we want to test
+
+    await browser.url('/hackathon/editor/c3d78c20-7b77-11eb-a5d8-599b64105e91/c3e806e0-7b77-11eb-9376-8161d518f2bb/live');
+    await waitForGridDisplayed()
+    await waitForTableDisplayed()
+    await expect(browser).toHaveTitle('Find LinkedIn profiles');
+
+    await eyes.check('live Window', Target.window().fully());
+
+  
+    // Call Close on eyes to let the server know it should display the results
+    await eyes.closeAsync();
+  });
+
+  it('login', async () => {
+
+    // Navigate to the url we want to test
+
+    await browser.url('/auth/login');
+    await waitLoadPage();
+    await eyes.check('login Window', Target.window().fully());
+
+    //login
+
+    const email = await $(emailInput);
+    //@TODO update credentials
+    await email.setValue('username');
+    await browser.keys(["Tab","NULL"]);
+    const pass = await $(passwordInput)
+    await pass.setValue('password');
+    await browser.keys(["Tab","NULL"]);
+
+    const btn = await $(submitButton);
+    await btn.click();
+    
+    await waitLoadPage();
+    //dashboard
+    await eyes.check('dashboard Window', Target.window().fully());
+
+    //workspace/settings/integrations
+    await browser.url('/hackathon/settings/integrations');
+    await waitLoadPage();
+    await eyes.check('integrations Window', Target.window().fully());
+
+    //workspace/settings/usage/integrations
+    await browser.url('/hackathon/settings/usage/integrations');
+    await waitLoadPage();
+    await eyes.check('usage integrations Window', Target.window().fully());
+
+    //workspace/settings/billing
+    await browser.url('/hackathon/settings/billing');
+    await waitLoadPage();
+    await eyes.check('billing Window', Target.window().fully());
+
+    const createApp = await $('[data-test="createApp-headerButton"]');
+    await createApp.click();
+    await waitLoadPage();
+    await eyes.check('editor Window', Target.window().fully());
+
+    //start typing in A1
+
+    await browser.keys(["Hackathon"]);
+    await eyes.check('editor A1 focus', Target.window().fully());
+
+    await browser.keys(["Enter"]);
+    await eyes.check('editor A1 submited', Target.window().fully());
+
+    const integrationsPanelBtn = await $('[data-test="integrationsPanelBtn"]');
+    await integrationsPanelBtn.click();
+    await waitLoadPage();
+    await eyes.check('integrationsPanel Window', Target.window().fully());
+
+    const SidePanelHeaderCloseBtn = await $('[data-test="SidePanelHeaderCloseBtn"]');
+    await SidePanelHeaderCloseBtn.click();
+    await browser.pause(500);
+
+    const functionHelperBtn = await $('[data-test="functionHelperBtn"]');
+    await functionHelperBtn.click();
+    await waitLoadPage();
+    await eyes.check('functionHelper Window', Target.window().fully());
+
+    const newFeatureBtn = await $('[data-test="newFeatureBtn"]');
+    await newFeatureBtn.click();
+    await waitLoadPage();
+    await eyes.check('newFeature Window', Target.window().fully());
+
+    // Call Close on eyes to let the server know it should display the results
+    await eyes.closeAsync();
+  });
+
+  
 
   afterEach(async () => {
     // If the test was aborted before eyes.close was called, ends the test as aborted.
